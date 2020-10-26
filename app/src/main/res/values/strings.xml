@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">appdemo</string>
+    <string name="presentation_heading">Lorem Ipsum</string>
+    <string name="presentation_tag_line">There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..</string>
+    <string name="login">Login</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="full_name">Full Name</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="next_btn">Next</string>
+    <string name="choose_gender">Choose Gender</string>
+    <string name="select_age">Select Your Age</string>
+</resources>
