@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
-        <activity android:name=".common.LoginSignup.SignUp3rd"/>
-        <activity android:name=".common.LoginSignup.SignUp2nd"/>
+        <activity android:name=".common.new2.KeeperPresentationActivity"></activity>
+        <activity android:name=".common.LoginSignup.SignUp3rd" />
+        <activity android:name=".common.LoginSignup.SignUp2nd" />
         <activity android:name=".common.LoginSignup.SignUp" />
         <activity android:name=".common.LoginSignup.LoginStartUpScreen">
             <intent-filter>
