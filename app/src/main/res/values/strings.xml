@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">appdemo</string>
+    <string name="app_name">Keeper</string>
     <string name="presentation_heading">Lorem Ipsum</string>
     <string name="presentation_tag_line">There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..</string>
     <string name="login">Login</string>
@@ -15,4 +15,7 @@
     <string name="next_btn">Next</string>
     <string name="choose_gender">Choose Gender</string>
     <string name="select_age">Select Your Age</string>
+    <string name="sing_up">Sign Up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
 </resources>

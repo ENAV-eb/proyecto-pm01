@@ -13,4 +13,31 @@
     <color name="outer_space_crayola">#1B373E</color>
     <color name="ocean_green">#75BD9B</color>
 
+    <color name="light_cornflower_blue">#ff8ecae6</color>
+    <color name="blue_green">#ff219ebc</color>
+    <color name="prussian_blue">#ff023047</color>
+    <color name="honey_yellow">#ffffb703</color>
+    <color name="orange">#fffb8500</color>
+
+    <!--
+    /* CSS HEX */
+light-cornflower-blue: #8ecae6ff;
+blue-green: #219ebcff;
+prussian-blue: #023047ff;
+honey-yellow: #ffb703ff;
+orange: #fb8500ff;
+
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-right: linear-gradient(90deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-bottom: linear-gradient(180deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-left: linear-gradient(270deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-top-right: linear-gradient(45deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-bottom-right: linear-gradient(135deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-top-left: linear-gradient(225deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-bottom-left: linear-gradient(315deg, #8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+$gradient-radial: radial-gradient(#8ecae6ff, #219ebcff, #023047ff, #ffb703ff, #fb8500ff);
+
+    -->
+
 </resources>

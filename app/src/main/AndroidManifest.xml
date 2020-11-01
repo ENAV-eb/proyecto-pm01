@@ -9,19 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
-        <activity android:name=".common.new2.KeeperPresentationActivity"></activity>
-        <activity android:name=".common.LoginSignup.SignUp3rd" />
-        <activity android:name=".common.LoginSignup.SignUp2nd" />
-        <activity android:name=".common.LoginSignup.SignUp" />
-        <activity android:name=".common.LoginSignup.LoginStartUpScreen">
+        <activity android:name=".common.new2.KeeperMainPageActivity"></activity>
+        <activity android:name=".common.new2.KeeperSignUpActivity" />
+        <activity android:name=".common.new2.KeeperLogin" />
+        <activity android:name=".common.new2.KeeperPresentationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".common.LoginSignup.Login" />
+        <!--
+        <activity android:name=".common.LoginSignup.SignUp3rd" />
+        <activity android:name=".common.LoginSignup.SignUp2nd" />
+        <activity android:name=".common.LoginSignup.SignUp" />
+        <activity android:name=".common.LoginSignup.LoginStartUpScreen">
 
+        </activity>
+        <activity android:name=".common.LoginSignup.Login" />
+        -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
