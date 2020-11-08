@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
-        <activity android:name=".common.new2.KeeperMainPageActivity"></activity>
+        <activity android:name=".common.new2.KeeperMainPageActivity"/>
         <activity android:name=".common.new2.KeeperSignUpActivity" />
         <activity android:name=".common.new2.KeeperLogin" />
         <activity android:name=".common.new2.KeeperPresentationActivity">

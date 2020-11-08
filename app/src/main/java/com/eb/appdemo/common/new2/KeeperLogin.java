@@ -31,4 +31,9 @@ public class KeeperLogin extends AppCompatActivity {
         Intent intent =  new Intent(getApplicationContext(),KeeperSignUpActivity.class);
         startActivity(intent);
     }
+    //al_login
+    public void callLogin(View view) {
+        Intent intent =  new Intent(getApplicationContext(),KeeperMainPageActivity.class);
+        startActivity(intent);
+    }
 }
