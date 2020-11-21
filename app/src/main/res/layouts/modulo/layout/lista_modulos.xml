@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="10dp"
+    android:theme="@style/card_module">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="40">
+
+            <LinearLayout
+                android:layout_weight="15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/google_1x"
+                    android:paddingBottom="@dimen/google_1x"
+                    android:paddingRight="0dp"
+                    android:gravity="right"
+                    android:layout_weight="5">
+
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_campo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CAMPO"
+                            android:textColor="@color/amarath_red"/>
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" / "/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_temperature_24"
+                        android:padding="@dimen/icon_4dp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_temperature"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="Temperatura"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_humidity_24"
+                        android:tint="@color/dark_blue"
+                        android:padding="@dimen/icon_4dp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_humedad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Humedad"
+                            android:layout_gravity="center_vertical"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_sunlight_24"
+                        android:tint="@color/honey_yellow"
+                        android:padding="@dimen/icon_4dp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_luminosidad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Luminosidad"
+                            android:layout_gravity="center_vertical"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="15">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/google_1x"
+                    android:paddingBottom="@dimen/google_1x"
+                    android:layout_gravity="left"
+                    android:gravity="left"
+                    android:layout_weight="5">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_modulo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/imperial_red"
+                            android:text=" MODULO "/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_soil_24"
+                        android:tint="@color/liver_dogs"
+                        android:padding="@dimen/icon_4dp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_soil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Soil"
+                            android:layout_gravity="center_vertical"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_4dp_width"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_crop_24"
+                        android:tint="@color/dark_olive_green"
+                        android:padding="@dimen/icon_4dp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_crop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Crop"
+                            android:layout_gravity="center_vertical"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_time_sand_24"
+                        android:tint="@color/space_cadet"
+                        android:padding="@dimen/icon_4dp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_tiempo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tiempo"
+                            android:layout_gravity="center_vertical"/>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="right"
+                    android:layout_gravity="top"
+                    android:paddingRight="@dimen/google_1x">
+
+                   <com.google.android.material.switchmaterial.SwitchMaterial
+                       android:id="@+id/cm_toogle"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:checked="true"
+                       android:enabled="true"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="top"
+                    android:padding="@dimen/google_1x">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_semana"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SEMANA"
+                            android:layout_gravity="center_vertical"/>
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="top"
+                    android:padding="@dimen/google_1x">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cm_fase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FASE"
+                            android:textColor="@color/space_cadet"
+                            android:layout_gravity="center_vertical"/>
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="top"
+                    android:padding="@dimen/google_1x">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="empty"
+                            android:layout_gravity="center_vertical"/>
+
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

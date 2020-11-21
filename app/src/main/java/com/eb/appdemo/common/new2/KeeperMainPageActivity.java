@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.eb.appdemo.R;
+import com.eb.appdemo.common.config.ConfigParentFragment;
 import com.eb.appdemo.common.modulo.MainPageFragment;
 import com.eb.appdemo.common.modulo.NewModuloFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,7 +35,7 @@ public class KeeperMainPageActivity extends AppCompatActivity {
 
                 if (item.getItemId() == R.id.menu_home) { abrirFragmentoMenu( new MainPageFragment());}
                 if (item.getItemId() == R.id.menu_add_module) { abrirFragmentoMenu( new NewModuloFragment());}
-                if (item.getItemId() == R.id.menu_config) { abrirFragmentoMenu( new MainPageFragment());}
+                if (item.getItemId() == R.id.menu_config) { abrirFragmentoMenu( new ConfigParentFragment());}
 
                 return false;
             }

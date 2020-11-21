@@ -2,12 +2,14 @@ package com.eb.appdemo.common.new2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.eb.appdemo.R;
 import com.eb.appdemo.common.LoginSignup.Login;
@@ -21,7 +23,18 @@ public class KeeperPresentationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+         */
+       // getSupportActionBar().hide();
+
         setContentView(R.layout.activity_keeper_presentation);
+
+
+
     }
 
     public void callSignUpScreen(View view){

@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:background="@color/light_cornflower_blue"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +26,10 @@
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="60dp"/>
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btnMainNavigation"

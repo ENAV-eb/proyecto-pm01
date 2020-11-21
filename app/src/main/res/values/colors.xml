@@ -13,11 +13,36 @@
     <color name="outer_space_crayola">#1B373E</color>
     <color name="ocean_green">#75BD9B</color>
 
+    <color name="amarath_red">#ffD90429</color>
+    <color name="imperial_red">#ffEF233C</color>
+    <color name="alice_blue_3">#ffEDF2F4</color>
+    <color name="manatee">#ff8D99AE</color>
+    <color name="space_cadet">#ff2B2D42</color>
+
+    <color name="ghost_white">#fffafbfe</color>
+    <color name="old_lace_1">#fffef6e9</color>
+    <color name="old_lace_2">#fffffaed</color>
+    <color name="alice_blue_1">#ffeef3fc</color>
+    <color name="alice_blue_2">#ffd9eafb</color>
+
+    <color name="scarlet">#fff1350e</color>
+    <color name="orange_crayola">#fff97139</color>
+    <color name="columbia_blue">#ffC9EDF8</color>
+    <color name="middle_blue">#ff44C1DA</color>
+    <color name="dark_jungle_green">#ff042829</color>
+
     <color name="light_cornflower_blue">#ff8ecae6</color>
     <color name="blue_green">#ff219ebc</color>
     <color name="prussian_blue">#ff023047</color>
     <color name="honey_yellow">#ffffb703</color>
     <color name="orange">#fffb8500</color>
+    
+    <color name="liver_dogs">#ffbc6c25</color>
+    <color name="dark_olive_green">#ff606C38</color>
+    <color name="cornsilk">#ffFEFAE0</color>
+    <color name="fawn">#ffDDA15E</color>
+
+    <color name="sheen_green">#ff70E000</color>
 
     <!--
     /* CSS HEX */

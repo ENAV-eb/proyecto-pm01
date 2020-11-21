@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.eb.appdemo.R;
 import com.google.android.material.tabs.TabLayout;
@@ -26,13 +27,14 @@ import java.util.List;
  * Use the {@link NewModuloFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewModuloFragment extends Fragment {
+public class NewModuloFragment extends Fragment implements NewModuleChildPleaFragment.OnChildFragmentInteractionListener{
 
     private static final String TAG = "MyActivity";
 
     private TabLayout module_tab_layout;
     private ViewPager2 module_view_container;
     private FragmentStateAdapter pagerAdapter;
+    private TextView title_new_module;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,12 +88,14 @@ public class NewModuloFragment extends Fragment {
 
         module_tab_layout = view.findViewById(R.id.module_tab_layout);
         module_view_container = view.findViewById(R.id.module_view_container);
+        title_new_module = view.findViewById(R.id.new_module_title);
 
-        List<String> tabs = Arrays.asList("Plea","Time");
+
+        List<String> tabs = Arrays.asList("S","T","C","D");
 
         module_tab_layout.setTabGravity(module_tab_layout.GRAVITY_FILL);
 
-        pagerAdapter = new ModuleAdapter(this.getActivity(),tabs.size());
+        pagerAdapter = new ModuleAdapter(this.getActivity(),tabs.size(),this);
 
 
         module_view_container.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
@@ -99,12 +103,20 @@ public class NewModuloFragment extends Fragment {
 
         new TabLayoutMediator(module_tab_layout, module_view_container,
                 false,
-                (tab, position) -> tab.setText(tabs.get(position))
+                (tab, position) -> tab.setIcon(R.drawable.ic_baseline_trip_origin_8)
         ).attach();
 
-
-
     }
+
+    public void setTitle(String new_title) {
+        title_new_module.setText(new_title);
+    }
+
+    @Override
+    public void messageFromChildToParent(String myString) {
+        setTitle(myString);
+    }
+
     /*
     // This event is triggered soon after onCreateView().
     // onViewCreated() is only called if the view returned from onCreateView() is non-null.

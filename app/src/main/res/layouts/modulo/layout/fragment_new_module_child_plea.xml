@@ -1,15 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".common.modulo.NewModuleChildPleaFragment">
+    tools:context=".common.modulo.NewModuleChildPleaFragment"
+    android:background="@color/white"
+    android:paddingLeft="30dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingRight="60dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/black"
-        android:text="Child Plea Module" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_modulo"
+            android:paddingBottom="@dimen/icon_4dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/prussian_blue"
+            app:boxStrokeColor="@color/prussian_blue"
+            app:startIconDrawable="@drawable/ic_baseline_create_24"
+            app:startIconTint="@color/blue_green"
+            android:textColorHint="@color/blue_green"
+            app:boxStrokeWidthFocused="2dp"
+            app:counterTextColor="@color/prussian_blue">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:textColor="@color/prussian_blue"
+                android:textColorHint="@color/prussian_blue"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_campo"
+            android:paddingBottom="@dimen/icon_4dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/prussian_blue"
+            app:boxStrokeColor="@color/prussian_blue"
+            app:startIconDrawable="@drawable/ic_baseline_create_24"
+            app:startIconTint="@color/blue_green"
+            android:textColorHint="@color/blue_green"
+            app:boxStrokeWidthFocused="2dp"
+            app:counterTextColor="@color/prussian_blue">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:textColor="@color/prussian_blue"
+                android:textColorHint="@color/prussian_blue"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/icon_4dp">
+
+            <LinearLayout
+                android:background="@drawable/rounder_corner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="left">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/google_1x">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/icon_4dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_create_24"
+                            android:tint="@color/blue_green"/>
+                        <TextView
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tipo_campo"
+                            android:textColor="@color/blue_green"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/blue_green"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
+
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/invernadero"
+                            android:textColor="@color/space_cadet"
+                            />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/campo_abierto"
+                            android:textColor="@color/space_cadet"
+                            />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hidroponico"
+                            android:textColor="@color/space_cadet"
+                            />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/icon_4dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/fecha_inicio_modulo_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/rounder_corner"
+                android:padding="@dimen/icon_4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/google_1x">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_create_24"
+                        android:tint="@color/blue_green"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/fecha_inicio_modulo"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:text="Presione para fecha de inicio"
+                        android:textColor="@color/blue_green"
+                        style="@style/ThemeMaterialCalendar"/>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
 
 </FrameLayout>

@@ -20,4 +20,29 @@
     <string name="last_name">Last Name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_module">Nuevo Módulo</string>
+    <string name="nombre_modulo">Nombre del módulo</string>
+    <string name="nombre_campo">Nombre del campo</string>
+    <string name="invernadero">Invernadero</string>
+    <string name="campo_abierto">Campo abierto</string>
+    <string name="hidroponico">Hidropónico</string>
+    <string name="tipo_campo">Seleccione Tipo de Campo</string>
+    <string name="url_service">Url del servicio</string>
+    <string name="usr_service">Usuario</string>
+    <string name="pwd_service">Password</string>
+    <string name="test_credential">test servicio</string>
+
+    <string name="resumen_modulo">Módulo :</string>
+    <string name="resumen_campo">Campo :</string>
+    <string name="resumen_tipo">Tipo :</string>
+    <string name="resumen_fecha_inicio">Fecha Inicio :</string>
+    <string name="resumen_semana_fumigacion">Semanas Fumigación :</string>
+    <string name="resumen_semanas_limpieza">Semanas Limpieza :</string>
+    <string name="resumen_semanas_cosecha">Semanas Cosecha :</string>
+
+    <string name="datos_generales">Datos Generales</string>
+    <string name="semanas_calendario">Semanas Calendario</string>
+    <string name="validar_servicio">Validar Servicio</string>
+    <string name="resume_new_module">Resumen del nuevo módulo</string>
+    <string name="agregar_modulo">Agregar Nuevo Módulo</string>
 </resources>

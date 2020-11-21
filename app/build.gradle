@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.eb.appdemo"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -31,10 +31,14 @@ android {
             res {
                 srcDirs 'src\\main\\res',
                         'src\\main\\res\\layouts\\common',
-                        'src\\main\\res\\layouts\\main', 'src\\main\\res\\layouts\\old', 'src\\main\\res\\layouts\\modulo'
+                        'src\\main\\res\\layouts\\main', 'src\\main\\res\\layouts\\old', 'src\\main\\res\\layouts\\modulo', 'src\\main\\res\\layouts\\config'
             }
         }
     }
+}
+
+repositories {
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -46,6 +50,15 @@ dependencies {
     implementation 'com.hbb20:ccp:2.3.1'
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.github.pratikbutani:MultiSelectSpinner:-SNAPSHOT'
+    
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+
+    // Declare the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-auth'
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
