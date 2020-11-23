@@ -20,7 +20,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:onClick="callBackSU"
             android:src="@drawable/ic_baseline_arrow_back_24"
             android:transitionName="transition_back_arrow_btn"
             android:layout_gravity="end"/>
@@ -58,6 +57,7 @@
                 app:counterTextColor="@color/prussian_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rg_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -79,6 +79,7 @@
                 app:boxStrokeWidthFocused="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rg_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -99,6 +100,7 @@
                 app:boxStrokeWidthFocused="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rg_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textEmailAddress"
@@ -126,6 +128,7 @@
 
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/rg_phone_number"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="phone"
@@ -134,6 +137,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.hbb20.CountryCodePicker
+                    android:id="@+id/rg_country_picker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/google_1x"
@@ -167,6 +171,7 @@
                 app:boxStrokeWidthFocused="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rg_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
@@ -177,13 +182,12 @@
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/signup_next_button"
+            android:id="@+id/signUp_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sing_up"
             android:textColor="@color/maximum_blue"
             android:backgroundTint="@color/prussian_blue"
-            android:onClick="callCreateAccount"
             android:textAllCaps="true"
             android:layout_marginTop="20dp"
             android:elevation="5dp"/>
@@ -199,7 +203,6 @@
             android:textColor="@color/blue_green"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:onClick="callLogin"
             android:transitionName="transition_login_btn"/>
 
 

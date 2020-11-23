@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1055178145744",
+    "firebase_url": "https://keeper-bd.firebaseio.com",
+    "project_id": "keeper-bd",
+    "storage_bucket": "keeper-bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055178145744:android:77759c1cf3d600300443d5",
+        "android_client_info": {
+          "package_name": "com.eb.appdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055178145744-k5tfe2el4vk3kev2k6nvhfl62u2r7tc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATtwzpXjTb30OqDTY2lyyiySUlGI4wj18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055178145744-k5tfe2el4vk3kev2k6nvhfl62u2r7tc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

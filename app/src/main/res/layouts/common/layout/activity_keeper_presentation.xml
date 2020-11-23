@@ -40,50 +40,91 @@
             android:textColor="@color/black"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="55dp">
+            android:id="@+id/ingresar_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="55dp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone">
 
-            <Button
-                android:id="@+id/btnLogin"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIngresar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:onClick="callLoginScreen"
-                android:text="@string/login"
+                android:backgroundTint="@color/scarlet"
+                android:textColor="@color/space_cadet"
+                android:text="@string/ingresar"
                 android:transitionName="transition_login"/>
 
-            <Button
-                android:id="@+id/btnSignUp"
-                android:layout_width="0dp"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/login_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="55dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:onClick="callSignUpScreen"
-                android:text="@string/sing_up"
-                android:transitionName="transition_singup"/>
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:onClick="callLoginScreen"
+                    android:text="@string/login"
+                    android:transitionName="transition_login"/>
+
+                <Button
+                    android:id="@+id/btnSignUp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:onClick="callSignUpScreen"
+                    android:text="@string/sing_up"
+                    android:transitionName="transition_singup"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.shobhitpuri.custombuttons.GoogleSignInButton
+                    android:id="@+id/sign_in_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/google_sign_up"
+                    android:forceHasOverlappingRendering="true"
+                    app:isDarkTheme="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"/>
+                <!--com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="@string/presentation_heading"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/ming"/-->
+
+            </LinearLayout>
 
         </LinearLayout>
 
 
-        <com.shobhitpuri.custombuttons.GoogleSignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/google_sign_up"
-            android:forceHasOverlappingRendering="true"
-            app:isDarkTheme="true"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"/>
-        <!--com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:text="@string/presentation_heading"
-            android:layout_weight="1"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/ming"/-->
+
 
 
     </LinearLayout>

@@ -18,7 +18,7 @@
     <string name="sing_up">Sign Up</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="new_module">Nuevo Módulo</string>
     <string name="nombre_modulo">Nombre del módulo</string>
@@ -45,4 +45,7 @@
     <string name="validar_servicio">Validar Servicio</string>
     <string name="resume_new_module">Resumen del nuevo módulo</string>
     <string name="agregar_modulo">Agregar Nuevo Módulo</string>
+    <string name="ingresar">Bienvenido! Ingresar</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="enter_password">Enter Password</string>
 </resources>
