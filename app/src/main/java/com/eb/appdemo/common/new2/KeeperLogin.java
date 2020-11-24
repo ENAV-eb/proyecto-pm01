@@ -10,6 +10,7 @@ import android.util.Pair;
 import android.view.View;
 
 import com.eb.appdemo.R;
+import com.eb.appdemo.common.util.ProviderType;
 import com.eb.appdemo.entidades.User;
 import com.eb.appdemo.modelo.DAOUser;
 import com.google.android.material.button.MaterialButton;
@@ -63,7 +64,7 @@ public class KeeperLogin extends AppCompatActivity {
                                 inputPassword.getText().toString())
                         .addOnCompleteListener(command -> {
 
-                                obtainUserData();
+                                obtainUserData(ProviderType.BASIC);
 
                         });
             }
@@ -71,19 +72,20 @@ public class KeeperLogin extends AppCompatActivity {
 
     }
 
-    private void obtainUserData() {
+    private void obtainUserData(ProviderType providerType) {
 
         daoUser.openDB();
 
+        //TODO get user params from firebase
         User user = daoUser.getUserFromUID(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-        //TODO Falta guardar USER en shared preference
 
 
         Intent mainIntent = new Intent(this,KeeperMainPageActivity.class);
 
+        mainIntent.putExtra("uid",user.getId());
         mainIntent.putExtra("first_name",user.getFirstName());
         mainIntent.putExtra("last_name",user.getLastName());
+        mainIntent.putExtra("providerType",providerType.toString());
 
         startActivity(mainIntent);
     }

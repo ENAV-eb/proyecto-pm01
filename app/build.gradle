@@ -32,7 +32,8 @@ android {
             res {
                 srcDirs 'src\\main\\res',
                         'src\\main\\res\\layouts\\common',
-                        'src\\main\\res\\layouts\\main', 'src\\main\\res\\layouts\\old', 'src\\main\\res\\layouts\\modulo', 'src\\main\\res\\layouts\\config'
+                        'src\\main\\res\\layouts\\main', 'src\\main\\res\\layouts\\old',
+                        'src\\main\\res\\layouts\\modulo', 'src\\main\\res\\layouts\\config'
             }
         }
     }
@@ -60,6 +61,10 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
+
+    // Also declare the dependency for the Google Play services library and specify its version
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.2'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

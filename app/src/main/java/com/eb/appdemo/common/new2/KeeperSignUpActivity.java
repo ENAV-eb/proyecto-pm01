@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.eb.appdemo.R;
 import com.eb.appdemo.common.util.AlertDialogUtil;
 import com.eb.appdemo.common.util.Constantes;
+import com.eb.appdemo.common.util.ProviderType;
 import com.eb.appdemo.entidades.User;
 import com.eb.appdemo.modelo.DAOUser;
 import com.google.android.material.button.MaterialButton;
@@ -92,7 +93,7 @@ public class KeeperSignUpActivity extends AppCompatActivity {
                                 ,rg_password.getText().toString())
                         .addOnCompleteListener(command -> {
                             if(command.isSuccessful()) {
-                                registerSqLiteUser(user);
+                                registerSqLiteUser(user, ProviderType.BASIC);
                             }
                             else { AlertDialogUtil
                                     .showAlertDialog("Se ha producido un error de autenticación",
@@ -105,7 +106,7 @@ public class KeeperSignUpActivity extends AppCompatActivity {
     }
 
 
-    private void registerSqLiteUser(User user) {
+    private void registerSqLiteUser(User user, ProviderType providerType) {
 
         user.setId(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
@@ -113,13 +114,14 @@ public class KeeperSignUpActivity extends AppCompatActivity {
 
         daoUser.registrarUsuario(user);
 
-         //TODO Falta guardar USER en shared preference
 
 
         Intent mainIntent = new Intent(this,KeeperMainPageActivity.class);
 
+        mainIntent.putExtra("uid",user.getId());
         mainIntent.putExtra("first_name",user.getFirstName());
         mainIntent.putExtra("last_name",user.getLastName());
+        mainIntent.putExtra("providerType",providerType.toString());
 
         startActivity(mainIntent);
 

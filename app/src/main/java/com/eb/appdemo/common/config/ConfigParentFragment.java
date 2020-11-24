@@ -1,6 +1,8 @@
 package com.eb.appdemo.common.config;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -70,7 +72,15 @@ public class ConfigParentFragment extends Fragment {
 
         sign_out.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
-            //TODO User shared preferense clean
+
+
+            SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(
+                    getString(R.string.preference_file), Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor editorSP = sharedPreferences.edit();
+
+            editorSP.clear();
+            editorSP.apply();
 
             Intent mainIntent = new Intent(this.getContext(), KeeperPresentationActivity.class);
 

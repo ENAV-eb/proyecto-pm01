@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 public class User {
 
+    //TODO provider.type, photourl
     private String id;
     private String firstName;
     private String lastName;

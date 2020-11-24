@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -22,6 +24,26 @@ public class KeeperMainPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keeper_main_page);
+
+        Bundle bundle = getIntent().getExtras();
+        String uid = bundle.getString("uid");
+        String first_name = bundle.getString("first_name");
+        String last_name = bundle.getString("last_name");
+        String providerType = bundle.getString("providerType");
+
+        SharedPreferences sharedPreferences = getSharedPreferences(
+                getString(R.string.preference_file), Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editorSP = sharedPreferences.edit();
+
+        editorSP.putString("user_uid",uid);
+        editorSP.putString("user_first_name",first_name);
+        editorSP.putString("user_last_name",last_name);
+        editorSP.putString("providerType",providerType).toString();
+        editorSP.apply();
+
+
+
         asignarReferenciasMenu();
     }
 
