@@ -3,6 +3,7 @@ package com.eb.appdemo.modelo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -23,21 +24,26 @@ public class DAOUser {
 
         try {
 
-            ContentValues values = new ContentValues();
-            values.put("id",user.getId());
-            values.put("first_name",user.getFirstName());
-            values.put("last_name",user.getLastName());
-            values.put("email",user.getEmail());
-            values.put("phone",user.getMobilePhone());
-            values.put("country_code",user.getCountryCode());
+            if(getUserFromUID(user.getId())==null) {
+                ContentValues values = new ContentValues();
+                values.put("id",user.getId());
+                values.put("first_name",user.getFirstName());
+                values.put("last_name",user.getLastName());
+                values.put("email",user.getEmail());
+                values.put("phone",user.getMobilePhone());
+                values.put("country_code",user.getCountryCode());
 
-            long result = sqlDb.insert(" USER ",
-                    null,values);
+                long result = sqlDb.insert(" USER ",
+                        null,values);
 
-            if (result == -1){
-                Log.i(TAG, "Insert error of " + user.getId());
-            }else{
-                Log.i(TAG, "Success insert of " + user.getId());
+                if (result == -1){
+                    Log.i(TAG, "Insert error of " + user.getId());
+                }else{
+                    Log.i(TAG, "Success insert of " + user.getId());
+                }
+
+            } else {
+                Log.i(TAG, "User already exist " + user.getId());
             }
 
         } catch (Exception e) {
