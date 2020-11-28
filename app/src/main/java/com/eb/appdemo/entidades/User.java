@@ -11,9 +11,22 @@ public class User {
     private String email;
     private String mobilePhone;
     private String countryCode;
+    private String providerType;
+    private String photoUrl;
 
-    public User(String id, String firstName, String lastName, String email, String mobilePhone, String countryCode) {
+    public User(String id,String firstName, String lastName, String email, String mobilePhone,
+                String countryCode, String providerType, String photoUrl) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.mobilePhone = mobilePhone;
+        this.countryCode = countryCode;
+        this.providerType = providerType;
+        this.photoUrl = photoUrl;
+    }
+
+    public User(String firstName, String lastName, String email, String mobilePhone, String countryCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -21,24 +34,12 @@ public class User {
         this.countryCode = countryCode;
     }
 
-    public User() {
-    }
 
-    public User(String first_name, String last_name, String email, String phone, String country) {
-        this.firstName = first_name;
-        this.lastName = last_name;
-        this.email = email;
-        this.mobilePhone = phone;
-        this.countryCode = country;
-    }
+    public User() { }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setId(String id) { this.id = id; }
 
     public String getFirstName() {
         return firstName;
@@ -80,16 +81,33 @@ public class User {
         this.countryCode = countryCode;
     }
 
+    public String getProviderType() {
+        return providerType;
+    }
+
+    public void setProviderType(String providerType) {
+        this.providerType = providerType;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", mobilePhone='" + mobilePhone + '\'' +
                 ", countryCode='" + countryCode + '\'' +
+                ", providerType='" + providerType + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
                 '}';
     }
 

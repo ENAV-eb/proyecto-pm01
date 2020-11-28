@@ -14,12 +14,15 @@ import com.eb.appdemo.R;
 import com.eb.appdemo.common.util.AlertDialogUtil;
 import com.eb.appdemo.common.util.Constantes;
 import com.eb.appdemo.common.util.ProviderType;
+import com.eb.appdemo.common.util.SecurityUtil;
 import com.eb.appdemo.entidades.User;
 import com.eb.appdemo.modelo.DAOUser;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
 public class KeeperSignUpActivity extends AppCompatActivity {
@@ -33,6 +36,8 @@ public class KeeperSignUpActivity extends AppCompatActivity {
     private MaterialButton signUp_action,signup_login_button;
 
     private ImageView asp_back_button;
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     DAOUser daoUser = new DAOUser();
 
@@ -87,13 +92,18 @@ public class KeeperSignUpActivity extends AppCompatActivity {
 
             User user = generatedTmpUser();
 
+
+            SecurityUtil.createFirebaseUser(user,rg_password.getText().toString()
+                    ,ProviderType.BASIC,this);
+            /*
             if(user != null) {
                 FirebaseAuth.getInstance()
                         .createUserWithEmailAndPassword(user.getEmail()
                                 ,rg_password.getText().toString())
                         .addOnCompleteListener(command -> {
                             if(command.isSuccessful()) {
-                                registerSqLiteUser(user, ProviderType.BASIC);
+                                //registerSqLiteUser(user, ProviderType.BASIC);
+                                registerUserFirebase(user,ProviderType.BASIC);
                             }
                             else { AlertDialogUtil
                                     .showAlertDialog("Se ha producido un error de autenticación",
@@ -101,14 +111,40 @@ public class KeeperSignUpActivity extends AppCompatActivity {
                         });
             }
 
+             */
+
         });
 
     }
 
-
-    private void registerSqLiteUser(User user, ProviderType providerType) {
+    private void registerUserFirebase(User user, ProviderType providerType){
 
         user.setId(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        user.setProviderType(providerType.toString());
+
+        if(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl()!=null) {
+            user.setPhotoUrl(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
+        } else {
+            user.setPhotoUrl("");
+        }
+
+        DatabaseReference userReference = firebaseDatabase.getReference();
+
+        userReference.child("users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(user);
+
+        Intent mainIntent = new Intent(this,KeeperMainPageActivity.class);
+
+        startActivity(mainIntent);
+
+    }
+
+
+    @Deprecated
+    private void registerSqLiteUser(User user, ProviderType providerType) {
+
+        //user.setId(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         daoUser.openDB();
 
@@ -118,7 +154,7 @@ public class KeeperSignUpActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent(this,KeeperMainPageActivity.class);
 
-        mainIntent.putExtra("uid",user.getId());
+        //mainIntent.putExtra("uid",user.getId());
         mainIntent.putExtra("first_name",user.getFirstName());
         mainIntent.putExtra("last_name",user.getLastName());
         mainIntent.putExtra("providerType",providerType.toString());

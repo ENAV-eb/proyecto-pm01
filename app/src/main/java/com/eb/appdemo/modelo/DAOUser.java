@@ -10,6 +10,7 @@ import android.util.Log;
 import com.eb.appdemo.db.KeeperDB;
 import com.eb.appdemo.entidades.User;
 
+@Deprecated
 public class DAOUser {
 
     SQLiteDatabase sqlDb;
@@ -21,8 +22,9 @@ public class DAOUser {
     public void openDB(){sqlDb = KeeperDB.openDB();}
 
     public void registrarUsuario(User user) {
-
+ /*
         try {
+
 
             if(getUserFromUID(user.getId())==null) {
                 ContentValues values = new ContentValues();
@@ -50,8 +52,12 @@ public class DAOUser {
             Log.e(TAG, "Error insert of " + user.getId());
         }
 
+
+  */
+
     }
 
+    @Deprecated
     public User getUserFromUID(String UID) {
         User user = new User();
         try {
@@ -60,12 +66,15 @@ public class DAOUser {
 
             while(cursor.moveToNext()){
 
+                /*
                 user = new User(cursor.getString(0)
                         ,cursor.getString(1)
                         ,cursor.getString(2)
                         ,cursor.getString(3)
                         ,cursor.getString(4)
                         ,cursor.getString(5));
+
+                 */
 
             }
 

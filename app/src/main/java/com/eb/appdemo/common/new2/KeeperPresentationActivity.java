@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.eb.appdemo.R;
 import com.eb.appdemo.common.util.AlertDialogUtil;
 import com.eb.appdemo.common.util.ProviderType;
+import com.eb.appdemo.common.util.SecurityUtil;
 import com.eb.appdemo.db.KeeperDB;
 import com.eb.appdemo.entidades.User;
 import com.eb.appdemo.modelo.DAOUser;
@@ -29,6 +30,8 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
 
@@ -41,6 +44,9 @@ public class KeeperPresentationActivity extends AppCompatActivity {
     //Init BD
     KeeperDB instance = KeeperDB.getInstance(this);
     DAOUser daoUser = new DAOUser();
+
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     private FirebaseAuth mAuth;
 
@@ -133,7 +139,8 @@ public class KeeperPresentationActivity extends AppCompatActivity {
                     FirebaseAuth.getInstance().signInWithCredential(credential)
                             .addOnCompleteListener(command -> {
                         if(command.isSuccessful()) {
-                            obtainUserData(account, ProviderType.GOOGLE);
+                            SecurityUtil.createUserGoogleToDB(account, ProviderType.GOOGLE,this);
+                            //obtainUserData(account, ProviderType.GOOGLE);
                         } else {
                             AlertDialogUtil
                                     .showAlertDialog("Se ha producido un error de autenticación",
@@ -152,29 +159,27 @@ public class KeeperPresentationActivity extends AppCompatActivity {
     private void obtainUserData(GoogleSignInAccount account,ProviderType providerType) {
 
         User user =  new User(FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                account.getDisplayName(),account.getFamilyName(),account.getEmail(),
-                "","");
+                account.getGivenName(),account.getFamilyName(),account.getEmail(),
+                "","",providerType.toString(),account.getPhotoUrl().toString());
 
-        //TODO IMAGE profile
+        DatabaseReference userReference = firebaseDatabase.getReference();
 
-        daoUser.openDB();
-        daoUser.registrarUsuario(user);
-
+        userReference.child("users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(user);
+        //daoUser.openDB();
+        //daoUser.registrarUsuario(user);
 
         Intent mainIntent = new Intent(this,KeeperMainPageActivity.class);
-
-        mainIntent.putExtra("uid",user.getId());
-        mainIntent.putExtra("first_name",user.getFirstName());
-        mainIntent.putExtra("last_name",user.getLastName());
-        mainIntent.putExtra("providerType",providerType);
 
         startActivity(mainIntent);
     }
 
+    //TODO update with firebase data
     private void updateUI(FirebaseUser currentUser) {
 
         login_layout.setVisibility(View.GONE);
-        User user = daoUser.getUserFromUID(currentUser.getUid());
+        //User user = daoUser.getUserFromUID(currentUser.getUid());
         //TODO replace sqLite with a mysqldb or add firebase support for other params
         //btnIngresar.setText("Bienvenido " + user.getUserCompleteName() +  "! - Click para Ingresar");
         btnIngresar.setText("Bienvenido " + mAuth.getCurrentUser().getEmail() +  "! - Click para Ingresar");
@@ -187,13 +192,11 @@ public class KeeperPresentationActivity extends AppCompatActivity {
         btnIngresar.setOnClickListener(v -> {
             Intent mainIntent = new Intent(this,KeeperMainPageActivity.class);
 
-            mainIntent.putExtra("first_name",mAuth.getCurrentUser().getEmail());
-            mainIntent.putExtra("last_name","dummy");
-
             startActivity(mainIntent);
         });
     }
 
+    //TODO Change to setOnClick on Main
     public void callSignUpScreen(View view){
         Intent intent =  new Intent(getApplicationContext(),KeeperSignUpActivity.class);
 
@@ -210,6 +213,7 @@ public class KeeperPresentationActivity extends AppCompatActivity {
         }
     }
 
+    //TODO Change to setOnClick on Main
     public void callLoginScreen(View view){
         Intent intent =  new Intent(getApplicationContext(),KeeperLogin.class);
 

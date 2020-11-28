@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.eb.appdemo.R;
 import com.eb.appdemo.common.util.ProviderType;
+import com.eb.appdemo.common.util.SecurityUtil;
 import com.eb.appdemo.entidades.User;
 import com.eb.appdemo.modelo.DAOUser;
 import com.google.android.material.button.MaterialButton;
@@ -18,6 +19,8 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class KeeperLogin extends AppCompatActivity {
 
@@ -28,6 +31,8 @@ public class KeeperLogin extends AppCompatActivity {
     private MaterialCheckBox chkRememberMe;
 
     private String username, password;
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     private DAOUser daoUser = new DAOUser();
 
@@ -57,6 +62,9 @@ public class KeeperLogin extends AppCompatActivity {
     private void settingLoginAction(){
 
         al_login.setOnClickListener(v -> {
+            SecurityUtil.loginFirebaseUser(inputUsername.getText().toString(),
+                    inputPassword.getText().toString(),this);
+            /*
             if(!inputUsername.getText().toString().isEmpty() &&
                     !inputPassword.getText().toString().isEmpty()) {
                 FirebaseAuth.getInstance().
@@ -64,28 +72,21 @@ public class KeeperLogin extends AppCompatActivity {
                                 inputPassword.getText().toString())
                         .addOnCompleteListener(command -> {
 
-                                obtainUserData(ProviderType.BASIC);
+                                redirectMainPage();
 
                         });
             }
+
+             */
         });
 
     }
 
-    private void obtainUserData(ProviderType providerType) {
-
-        daoUser.openDB();
-
-        //TODO get user params from firebase
-        User user = daoUser.getUserFromUID(FirebaseAuth.getInstance().getCurrentUser().getUid());
+    private void redirectMainPage() {
 
 
         Intent mainIntent = new Intent(this,KeeperMainPageActivity.class);
 
-        mainIntent.putExtra("uid",user.getId());
-        mainIntent.putExtra("first_name",user.getFirstName());
-        mainIntent.putExtra("last_name",user.getLastName());
-        mainIntent.putExtra("providerType",providerType.toString());
 
         startActivity(mainIntent);
     }
