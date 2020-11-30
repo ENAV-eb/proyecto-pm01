@@ -30,7 +30,7 @@ public class NewModuleChildPleaFragment extends Fragment {
     private LinearLayout fechaInicioLayout;
 
     private OnChildFragmentInteractionListener mParentListener;
-    private NewModuloFragment newModuloFragment;
+    private NewModuloFragment moduloFragment;
 
     private static final String TAG = "MyActivity";
 
@@ -43,9 +43,10 @@ public class NewModuleChildPleaFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public NewModuleChildPleaFragment(NewModuloFragment newModuloFragment) {
+    public NewModuleChildPleaFragment(NewModuloFragment moduloFragment) {
         // Required empty public constructor
-        this.newModuloFragment = newModuloFragment;
+        this.moduloFragment = moduloFragment;
+        moduloFragment.setTitle(Constantes.DATOS_GENERALES);
     }
 
     /**
@@ -100,7 +101,7 @@ public class NewModuleChildPleaFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        newModuloFragment.setTitle(Constantes.DATOS_GENERALES);
+        moduloFragment.setTitle(Constantes.DATOS_GENERALES);
     }
 
     @Override

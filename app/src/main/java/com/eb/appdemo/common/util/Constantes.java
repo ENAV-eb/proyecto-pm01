@@ -9,6 +9,7 @@ public class Constantes {
     public final static String CALENDARIO_SEMANA="Semanas Calendario";
     public final static String VALIDAR_SERVICIO="Validar Servicio";
     public final static String DETALLE_NUEVO_MODULO="Resumen del nuevo módulo";
+    public final static String GOOGLE_MAPS_TITLE="Indique la Locatidad (opcional)";
 
 
     public static final String[] USER_ERROR_LABEL= {"first name","last name","email",

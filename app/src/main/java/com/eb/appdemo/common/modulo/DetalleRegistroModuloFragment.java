@@ -22,7 +22,7 @@ public class DetalleRegistroModuloFragment extends Fragment {
 
 
 
-    private NewModuloFragment newModuloFragment;
+    private NewModuloFragment moduloFragment;
 
 
 
@@ -31,7 +31,8 @@ public class DetalleRegistroModuloFragment extends Fragment {
     }
 
     public DetalleRegistroModuloFragment(NewModuloFragment moduloFragment) {
-        this.newModuloFragment = moduloFragment;
+        this.moduloFragment = moduloFragment;
+        moduloFragment.setTitle(Constantes.DETALLE_NUEVO_MODULO);
     }
 
     /**
@@ -70,6 +71,6 @@ public class DetalleRegistroModuloFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        newModuloFragment.setTitle(Constantes.DETALLE_NUEVO_MODULO);
+        moduloFragment.setTitle(Constantes.DETALLE_NUEVO_MODULO);
     }
 }

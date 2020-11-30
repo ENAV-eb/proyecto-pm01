@@ -46,7 +46,7 @@ public class NewModuleChildTimeFragment extends Fragment {
     List<Long> semanasCosecha = new ArrayList<>();
     List<Long> semanasLimpieza = new ArrayList<>();
 
-    private NewModuloFragment newModuloFragment;
+    private NewModuloFragment moduloFragment;
 
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,7 +62,8 @@ public class NewModuleChildTimeFragment extends Fragment {
     }
 
     public NewModuleChildTimeFragment(NewModuloFragment moduloFragment) {
-        this.newModuloFragment = moduloFragment;
+        this.moduloFragment = moduloFragment;
+        moduloFragment.setTitle(Constantes.CALENDARIO_SEMANA);
     }
 
     /**
@@ -116,7 +117,7 @@ public class NewModuleChildTimeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        newModuloFragment.setTitle(Constantes.CALENDARIO_SEMANA);
+        moduloFragment.setTitle(Constantes.CALENDARIO_SEMANA);
     }
 
     @Override

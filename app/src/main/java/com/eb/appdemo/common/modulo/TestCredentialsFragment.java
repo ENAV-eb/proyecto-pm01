@@ -21,7 +21,7 @@ import com.eb.appdemo.common.util.Constantes;
 public class TestCredentialsFragment extends Fragment {
 
 
-    private NewModuloFragment newModuloFragment;
+    private NewModuloFragment moduloFragment;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +37,8 @@ public class TestCredentialsFragment extends Fragment {
     }
 
     public TestCredentialsFragment(NewModuloFragment moduloFragment) {
-        this.newModuloFragment = moduloFragment;
+        this.moduloFragment = moduloFragment;
+        moduloFragment.setTitle(Constantes.VALIDAR_SERVICIO);
     }
 
     /**
@@ -83,6 +84,6 @@ public class TestCredentialsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        newModuloFragment.setTitle(Constantes.VALIDAR_SERVICIO);
+        moduloFragment.setTitle(Constantes.VALIDAR_SERVICIO);
     }
 }

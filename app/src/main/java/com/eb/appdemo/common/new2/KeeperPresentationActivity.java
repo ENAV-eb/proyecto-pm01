@@ -67,6 +67,9 @@ public class KeeperPresentationActivity extends AppCompatActivity {
 
         Log.i(TAG,"Init BD= " + instance.hashCode()) ;
 
+        //AIzaSyATtwzpXjTb30OqDTY2lyyiySUlGI4wj18
+        //Log.i(TAG,"Google api key" + getString(R.string.google_api_key));
+
         FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Bundle bundle = new Bundle();
         bundle.putString("message", "Integración con firebase");
@@ -88,8 +91,6 @@ public class KeeperPresentationActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser!=null)  updateUI(currentUser);
-
-
 
     }
 

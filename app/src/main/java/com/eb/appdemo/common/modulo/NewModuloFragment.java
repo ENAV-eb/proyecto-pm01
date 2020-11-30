@@ -1,21 +1,27 @@
 package com.eb.appdemo.common.modulo;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eb.appdemo.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -35,6 +41,7 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
     private ViewPager2 module_view_container;
     private FragmentStateAdapter pagerAdapter;
     private TextView title_new_module;
+
 
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,7 +98,7 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
         title_new_module = view.findViewById(R.id.new_module_title);
 
 
-        List<String> tabs = Arrays.asList("S","T","C","D");
+        List<String> tabs = Arrays.asList("S","T","C","M","D");
 
         module_tab_layout.setTabGravity(module_tab_layout.GRAVITY_FILL);
 
@@ -100,6 +107,27 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
 
         module_view_container.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
         module_view_container.setAdapter(pagerAdapter);
+        //module_view_container.setUserInputEnabled(false);
+        module_view_container.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+                Log.i(TAG,"module_view_container state= " + state) ;
+                //TODO resolve action of stop scrollable only on viewpager and not on tab, allow tab scrollaction
+                if(module_view_container.getCurrentItem() == 3) {
+                    module_tab_layout.setBackgroundColor(getResources().getColor(R.color.white));
+                }
+                if (state == ViewPager2.SCROLL_STATE_DRAGGING
+                        && module_view_container.getCurrentItem() == 3) {
+                    module_view_container.setUserInputEnabled(false);
+                    module_tab_layout.setBackgroundColor(getResources().getColor(R.color.white));
+                } else {
+                    module_view_container.setUserInputEnabled(true);
+                }
+
+            }
+
+        });
 
         new TabLayoutMediator(module_tab_layout, module_view_container,
                 false,

@@ -102,7 +102,7 @@ public class KeeperMainPageActivity extends AppCompatActivity {
                     User user = dataSnapshot.getValue(User.class);
 
                     Log.i(TAG, "Query user:" + user.toString());
-                    user_welcome.setText("Bievenido, " + user.getUserCompleteName());
+                    user_welcome.setText("Bienvenido, " + user.getUserCompleteName());
                     if(!user.getPhotoUrl().trim().isEmpty()) {
                         new DownloadImageTask((ImageView) findViewById(R.id.user_icon))
                                 .execute(user.getPhotoUrl());

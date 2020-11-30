@@ -39,6 +39,7 @@
             android:gravity="center"
             android:layout_gravity="right">
 
+            <!--TODO resolve width and place 2 arrows up and down for click-->
             <com.google.android.material.tabs.TabLayout
                 android:rotation="90"
                 app:tabIndicatorHeight="2dp"
