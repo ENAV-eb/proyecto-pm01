@@ -10,6 +10,7 @@ public class Constantes {
     public final static String VALIDAR_SERVICIO="Validar Servicio";
     public final static String DETALLE_NUEVO_MODULO="Resumen del nuevo módulo";
     public final static String GOOGLE_MAPS_TITLE="Indique la Locatidad (opcional)";
+    public final static String ACCESS_CONTACTS_TITLE="Indique persona responsable";
 
 
     public static final String[] USER_ERROR_LABEL= {"first name","last name","email",

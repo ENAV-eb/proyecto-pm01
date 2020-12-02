@@ -1,27 +1,21 @@
 package com.eb.appdemo.common.modulo;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
+
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.core.app.ActivityCompat;
+
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eb.appdemo.R;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -40,6 +34,7 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
     private TabLayout module_tab_layout;
     private ViewPager2 module_view_container;
     private FragmentStateAdapter pagerAdapter;
+    private FragmentStatePagerAdapter pagerStateAdapter;
     private TextView title_new_module;
 
 
@@ -90,6 +85,7 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
         return inflater.inflate(R.layout.fragment_new_modulo, container, false);
     }
 
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
@@ -98,16 +94,18 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
         title_new_module = view.findViewById(R.id.new_module_title);
 
 
-        List<String> tabs = Arrays.asList("S","T","C","M","D");
+        List<String> tabs = Arrays.asList("S","T","C","D");
 
         module_tab_layout.setTabGravity(module_tab_layout.GRAVITY_FILL);
 
-        pagerAdapter = new ModuleAdapter(this.getActivity(),tabs.size(),this);
-
+        pagerAdapter = new ModuleAdapter(getActivity(),tabs.size(),this);
+        //pagerStateAdapter =  new FragmentModuleAdapter(this.getChildFragmentManager(),tabs.size(),this);
 
         module_view_container.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
         module_view_container.setAdapter(pagerAdapter);
         //module_view_container.setUserInputEnabled(false);
+
+        /* TODO Not necesary anymore, very useful will keep it
         module_view_container.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrollStateChanged(int state) {
@@ -128,6 +126,8 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
             }
 
         });
+
+         */
 
         new TabLayoutMediator(module_tab_layout, module_view_container,
                 false,

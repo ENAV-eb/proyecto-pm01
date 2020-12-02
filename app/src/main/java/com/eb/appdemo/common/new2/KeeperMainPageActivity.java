@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class KeeperMainPageActivity extends AppCompatActivity {
 
@@ -83,6 +84,20 @@ public class KeeperMainPageActivity extends AppCompatActivity {
         user_welcome = findViewById(R.id.user_welcome);
         user_icon = findViewById(R.id.user_icon);
     }
+
+    /*
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments != null) {
+            for (Fragment fragment : fragments) {
+                fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
+    }
+
+     */
 
 
     private void updateHeader(FirebaseUser user) throws IOException {

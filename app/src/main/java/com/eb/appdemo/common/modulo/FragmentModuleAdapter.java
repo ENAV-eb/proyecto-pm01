@@ -1,31 +1,26 @@
 package com.eb.appdemo.common.modulo;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.eb.appdemo.R;
 import com.eb.appdemo.common.new2.ContactPhoneFragment;
-import com.eb.appdemo.common.new2.GoogleMapsFragment;
-import com.eb.appdemo.common.util.Constantes;
 
-public class ModuleAdapter extends FragmentStateAdapter {
+public class FragmentModuleAdapter extends FragmentStatePagerAdapter {
 
     int totalTabs;
     NewModuloFragment moduloFragment;
 
-    public ModuleAdapter(@NonNull FragmentActivity fragmentActivity, int totalTabs, NewModuloFragment moduloFragment) {
-        super(fragmentActivity);
-        this.totalTabs = totalTabs;
+    public FragmentModuleAdapter(@NonNull FragmentManager fm, int totalTabs, NewModuloFragment moduloFragment) {
+        super(fm);
         this.moduloFragment = moduloFragment;
+        this.totalTabs = totalTabs;
     }
 
     @NonNull
     @Override
-    public Fragment createFragment(int position) {
+    public Fragment getItem(int position) {
         switch (position){
             case 0:
 
@@ -63,9 +58,8 @@ public class ModuleAdapter extends FragmentStateAdapter {
         }
     }
 
-
     @Override
-    public int getItemCount() {
+    public int getCount() {
         return totalTabs;
     }
 }
