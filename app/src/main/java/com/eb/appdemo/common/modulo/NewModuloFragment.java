@@ -4,8 +4,11 @@ package com.eb.appdemo.common.modulo;
 import android.os.Bundle;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -34,8 +37,9 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
     private TabLayout module_tab_layout;
     private ViewPager2 module_view_container;
     private FragmentStateAdapter pagerAdapter;
-    private FragmentStatePagerAdapter pagerStateAdapter;
     private TextView title_new_module;
+
+    private int main_layout;
 
 
 
@@ -98,8 +102,8 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
 
         module_tab_layout.setTabGravity(module_tab_layout.GRAVITY_FILL);
 
+        //TODO Class should extend from FragmentActivy so this class is the parent
         pagerAdapter = new ModuleAdapter(getActivity(),tabs.size(),this);
-        //pagerStateAdapter =  new FragmentModuleAdapter(this.getChildFragmentManager(),tabs.size(),this);
 
         module_view_container.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
         module_view_container.setAdapter(pagerAdapter);

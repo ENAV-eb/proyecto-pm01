@@ -1,6 +1,7 @@
 package com.eb.appdemo.common.new2;
 
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder> {
+
+    private static final String TAG = "MyActivity";
 
     ArrayList<ContactPhone> contacts;
 
@@ -47,10 +50,15 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         holder.nName.setText(contacts.get(position).getName());
         holder.nNumber.setText(contacts.get(position).getNumber());
 
+        holder.mAdd.setChecked(contacts.get(position).getSelected());
+
         holder.mAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 contacts.get(holder.getAdapterPosition()).setSelected(isChecked);
+
+                Log.i(TAG,"ContactsAdapter onCheckedChanged = " +
+                        contacts.get(holder.getAdapterPosition())) ;
             }
         });
     }

@@ -3,11 +3,11 @@ package com.eb.appdemo.common.modulo;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.eb.appdemo.common.new2.ContactPhoneFragment;
 
-public class FragmentModuleAdapter extends FragmentStatePagerAdapter {
+public class FragmentModuleAdapter extends FragmentPagerAdapter {
 
     int totalTabs;
     NewModuloFragment moduloFragment;

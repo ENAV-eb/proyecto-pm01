@@ -15,6 +15,7 @@
         android:layout_marginBottom="@dimen/google_1x">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/busqueda_contactos"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

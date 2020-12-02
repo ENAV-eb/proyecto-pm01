@@ -1,6 +1,7 @@
 package com.eb.appdemo.common.new2;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
@@ -29,9 +30,12 @@ import com.eb.appdemo.R;
 import com.eb.appdemo.common.modulo.NewModuloFragment;
 import com.eb.appdemo.common.util.Constantes;
 import com.eb.appdemo.entidades.ContactPhone;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.security.Permission;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +49,9 @@ public class ContactPhoneFragment extends Fragment  {
     private RecyclerView rvContacts;
     private RecyclerView.Adapter rvContactsAdapter;
     private RecyclerView.LayoutManager rvContactsLayoutManager;
+
+    TextInputLayout busqueda_contactos;
+    TextInputEditText variable_busqueda_contactos;
 
     ArrayList<ContactPhone> contactPhonesList;
 
@@ -113,6 +120,7 @@ public class ContactPhoneFragment extends Fragment  {
         }
 
         //TODO
+        setBusquedaAction();
 
 
 
@@ -145,6 +153,9 @@ public class ContactPhoneFragment extends Fragment  {
 
     private void hooks(View view) {
         rvContacts = view.findViewById(R.id.contactList);
+        variable_busqueda_contactos = view.findViewById(R.id.variable_busqueda_contactos);
+        busqueda_contactos = view.findViewById(R.id.busqueda_contactos);
+
     }
 
     private void setContactAdapterList() {
@@ -157,6 +168,26 @@ public class ContactPhoneFragment extends Fragment  {
 
         rvContactsAdapter =  new ContactsAdapter(contactPhonesList);
         rvContacts.setAdapter(rvContactsAdapter);
+    }
+
+    @SuppressLint({"NewApi", "LocalSuppress"})
+    private void setBusquedaAction(){
+        busqueda_contactos.setEndIconOnClickListener(v -> {
+            Log.i(TAG,"ContactPhoneFragment setBusquedaAction variable_busqueda_contactos = " +
+                     variable_busqueda_contactos.getText());
+            Log.i(TAG,"ContactPhoneFragment setBusquedaAction contactPhonesList = " +
+                    contactPhonesList.toString());
+            ArrayList<ContactPhone> contactPhonesListSearch = contactPhonesList.stream().filter(c ->
+                    c.getName().contains(variable_busqueda_contactos.getText()))
+                    .collect(Collectors.toCollection(ArrayList::new));
+
+            Log.i(TAG,"ContactPhoneFragment setBusquedaAction contactPhonesListSearch = " +
+                    contactPhonesListSearch.toString());
+
+            rvContactsAdapter =  new ContactsAdapter(contactPhonesListSearch);
+            rvContacts.setAdapter(rvContactsAdapter);
+
+        });
     }
 
 
