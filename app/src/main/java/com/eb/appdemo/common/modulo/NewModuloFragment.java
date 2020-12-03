@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eb.appdemo.R;
+import com.eb.appdemo.entidades.Modulo;
+import com.eb.appdemo.interfaces.NewModuleCommunicator;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -30,7 +32,7 @@ import java.util.List;
  * Use the {@link NewModuloFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewModuloFragment extends Fragment implements NewModuleChildPleaFragment.OnChildFragmentInteractionListener{
+public class NewModuloFragment extends Fragment {
 
     private static final String TAG = "MyActivity";
 
@@ -40,6 +42,7 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
     private TextView title_new_module;
 
     private int main_layout;
+    private FragmentPagerAdapter fragmentPagerAdapter;
 
 
 
@@ -104,6 +107,7 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
 
         //TODO Class should extend from FragmentActivy so this class is the parent
         pagerAdapter = new ModuleAdapter(getActivity(),tabs.size(),this);
+        //fragmentPagerAdapter =  new FragmentModuleAdapter(getChildFragmentManager(),tabs.size(),this);
 
         module_view_container.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
         module_view_container.setAdapter(pagerAdapter);
@@ -144,10 +148,7 @@ public class NewModuloFragment extends Fragment implements NewModuleChildPleaFra
         title_new_module.setText(new_title);
     }
 
-    @Override
-    public void messageFromChildToParent(String myString) {
-        setTitle(myString);
-    }
+
 
     /*
     // This event is triggered soon after onCreateView().

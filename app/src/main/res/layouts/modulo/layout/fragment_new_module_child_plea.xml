@@ -34,6 +34,7 @@
             app:counterTextColor="@color/prussian_blue">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombre_modulo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="text"
@@ -58,6 +59,7 @@
             app:counterTextColor="@color/prussian_blue">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/campo_modulo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="text"
@@ -117,7 +119,8 @@
 
                     <RadioGroup
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tipo_campo_modulo">
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
 
@@ -125,6 +128,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/invernadero"
                             android:textColor="@color/space_cadet"
+                            android:id="@+id/opt_invernadero"
                             />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
@@ -133,6 +137,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/campo_abierto"
                             android:textColor="@color/space_cadet"
+                            android:id="@+id/opt_campo_abierto"
                             />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
@@ -141,6 +146,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/hidroponico"
                             android:textColor="@color/space_cadet"
+                            android:id="@+id/opt_hidroponico"
                             />
                     </RadioGroup>
 

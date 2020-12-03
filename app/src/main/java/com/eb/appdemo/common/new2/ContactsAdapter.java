@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.eb.appdemo.R;
 import com.eb.appdemo.entidades.ContactPhone;
+import com.eb.appdemo.entidades.Modulo;
+import com.eb.appdemo.entidades.Responsables;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     private static final String TAG = "MyActivity";
 
     ArrayList<ContactPhone> contacts;
+
+    private Modulo newModulo = Modulo.getInstance();
 
     public ContactsAdapter(ArrayList<ContactPhone> contacts) {
         this.contacts = contacts;
@@ -57,6 +61,18 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 contacts.get(holder.getAdapterPosition()).setSelected(isChecked);
 
+                ContactPhone contactPhone = contacts.get(holder.getAdapterPosition());
+                List<Responsables> responsablesList = newModulo.getResponsables();
+
+                if(responsablesList == null) { responsablesList =  new ArrayList<>();}
+
+                if(isChecked == true){
+                    responsablesList.add(new Responsables(contactPhone));
+                } else {
+                    responsablesList.remove(responsablesList.indexOf(contactPhone));
+                }
+
+                newModulo.setResponsables(responsablesList);
                 Log.i(TAG,"ContactsAdapter onCheckedChanged = " +
                         contacts.get(holder.getAdapterPosition())) ;
             }

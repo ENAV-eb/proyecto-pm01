@@ -1,9 +1,11 @@
 package com.eb.appdemo.common.modulo;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -18,9 +20,11 @@ import com.androidbuts.multispinnerfilter.SingleSpinnerListener;
 import com.androidbuts.multispinnerfilter.SingleSpinnerSearch;
 import com.eb.appdemo.R;
 import com.eb.appdemo.common.util.Constantes;
+import com.eb.appdemo.entidades.Modulo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +34,8 @@ import java.util.List;
 public class NewModuleChildTimeFragment extends Fragment {
 
     private static final String TAG = "MyActivity";
+
+    private Modulo newModulo = Modulo.getInstance();
 
     MultiSpinnerSearch mssFumigaciónModulo;
     MultiSpinnerSearch mssLimpiezaModulo;
@@ -120,26 +126,44 @@ public class NewModuleChildTimeFragment extends Fragment {
         moduloFragment.setTitle(Constantes.CALENDARIO_SEMANA);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onPause() {
         super.onPause();
 
+        Log.i(TAG,"NewModuleChildTimeFragment onPause newModule= " + newModulo.toString()) ;
+
+        /*
+        semanasFumigacion = mssFumigaciónModulo.getSelectedIds();
+        semanasLimpieza = mssLimpiezaModulo.getSelectedIds();
+        semanasCosecha = mssCosechaModulo.getSelectedIds();
+
+        Log.i(TAG,"NewModuleChildTimeFragment onPause listaFumigacion= " + semanasFumigacion.size() ) ;
+        Log.i(TAG,"NewModuleChildTimeFragment listaLimpieza= " + semanasLimpieza.size() ) ;
+        Log.i(TAG,"NewModuleChildTimeFragment listaCosecha= " + semanasCosecha.size() ) ;
+
+         */
+
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setDataForNewModule(){
 
         semanasFumigacion = mssFumigaciónModulo.getSelectedIds();
         semanasLimpieza = mssLimpiezaModulo.getSelectedIds();
         semanasCosecha = mssCosechaModulo.getSelectedIds();
 
-
-
-        Log.i(TAG,"On listaFumigacion= " + semanasFumigacion.size() ) ;
-        Log.i(TAG,"On listaLimpieza= " + semanasLimpieza.size() ) ;
-        Log.i(TAG,"On listaCosecha= " + semanasCosecha.size() ) ;
+        newModulo.setSemanaCosecha(semanasCosecha.stream().map(s->s.toString()).collect(Collectors.toList()));
+        newModulo.setSemanaFumigacion(semanasFumigacion.stream().map(s->s.toString()).collect(Collectors.toList()));
+        newModulo.setSemanaLimpieza(semanasLimpieza.stream().map(s->s.toString()).collect(Collectors.toList()));
     }
 
     private void asignarHooks(View view) {
         mssFumigaciónModulo = view.findViewById(R.id.mssFumigaciónModulo);
         mssLimpiezaModulo = view.findViewById(R.id.mssLimpiezaModulo);
         mssCosechaModulo = view.findViewById(R.id.mssCosechaModulo);
+        
     }
 
 
@@ -175,10 +199,18 @@ public class NewModuleChildTimeFragment extends Fragment {
             @Override
             public void onItemsSelected(List<KeyPairBoolData> selectedItems) {
 
+                List<String> sFumigacion = new ArrayList<>();
                 for (KeyPairBoolData k: selectedItems) {
-                    listaFumigacion.get(listaFumigacion.indexOf(k)).setSelected(true);
+                    sFumigacion.add(String.valueOf(k.getId()));
                 }
-                Log.i(TAG,"On mssFumigaciónModulo= " + selectedItems.size() ) ;
+                newModulo.setSemanaFumigacion(sFumigacion);
+                Log.i(TAG,"NewModuleChildTimeFragment setMultiSpinnerFumigacion onItemsSelected " +
+                        "semanasFumigacion= " + newModulo.getSemanaFumigacion()) ;
+
+                for (KeyPairBoolData selectedItem : selectedItems) {
+                    selectedItem.setSelected(false);
+                }
+
             }
         });
 
@@ -218,7 +250,17 @@ public class NewModuleChildTimeFragment extends Fragment {
             @Override
             public void onItemsSelected(List<KeyPairBoolData> selectedItems) {
 
-                Log.i(TAG,"On mssLimpiezaModulo= " + selectedItems.size() ) ;
+                List<String> sLimpieza = new ArrayList<>();
+                for (KeyPairBoolData k: selectedItems) {
+                    sLimpieza.add(String.valueOf(k.getId()));
+                }
+                newModulo.setSemanaLimpieza(sLimpieza);
+                Log.i(TAG,"NewModuleChildTimeFragment setMultiSpinnerLimpieza onItemsSelected " +
+                        "semanaLimpíeza= " + newModulo.getSemanaLimpieza()) ;
+
+                for (KeyPairBoolData selectedItem : selectedItems) {
+                    selectedItem.setSelected(false);
+                }
 
             }
         });
@@ -238,7 +280,17 @@ public class NewModuleChildTimeFragment extends Fragment {
             @Override
             public void onItemsSelected(List<KeyPairBoolData> selectedItems) {
 
-                Log.i(TAG,"On mssCosechaModulo= " + selectedItems.size() ) ;
+                List<String> sCosecha = new ArrayList<>();
+                for (KeyPairBoolData k: selectedItems) {
+                    sCosecha.add(String.valueOf(k.getId()));
+                }
+                newModulo.setSemanaCosecha(sCosecha);
+                Log.i(TAG,"NewModuleChildTimeFragment setMultiSpinnerCosecha onItemsSelected " +
+                        "semanaCosecha= " + newModulo.getSemanaCosecha()) ;
+
+                for (KeyPairBoolData selectedItem : selectedItems) {
+                    selectedItem.setSelected(false);
+                }
 
             }
 

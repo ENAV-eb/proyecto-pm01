@@ -50,5 +50,6 @@
     <string name="ingresar">Bienvenido! Ingresar</string>
     <string name="cerrar_sesion">Cerrar Sesion</string>
     <string name="enter_password">Enter Password</string>
+    <string name="responsables_title">Responsables : </string>
 
 </resources>

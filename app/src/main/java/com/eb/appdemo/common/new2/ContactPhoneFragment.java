@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -30,6 +31,8 @@ import com.eb.appdemo.R;
 import com.eb.appdemo.common.modulo.NewModuloFragment;
 import com.eb.appdemo.common.util.Constantes;
 import com.eb.appdemo.entidades.ContactPhone;
+import com.eb.appdemo.entidades.Modulo;
+import com.eb.appdemo.entidades.Responsables;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -45,6 +48,8 @@ import java.util.stream.Collectors;
 public class ContactPhoneFragment extends Fragment  {
 
     private static final String TAG = "MyActivity";
+
+    private Modulo newModulo = Modulo.getInstance();
 
     private RecyclerView rvContacts;
     private RecyclerView.Adapter rvContactsAdapter;
@@ -188,6 +193,29 @@ public class ContactPhoneFragment extends Fragment  {
             rvContacts.setAdapter(rvContactsAdapter);
 
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(TAG,"ContactPhoneFragment onPause contactPhonesList = " +
+                contactPhonesList.toString());
+
+        //setDataForNewModule();
+
+        Log.i(TAG,"ContactPhoneFragment onPause newModule = " +
+                newModulo.toString());
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setDataForNewModule() {
+        newModulo.setResponsables(contactPhonesList.stream()
+                .filter(c-> c.getSelected().equals(true))
+                .map(r -> new Responsables(r))
+                .collect(Collectors.toList()));
+
     }
 
 
