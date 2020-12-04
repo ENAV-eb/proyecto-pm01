@@ -1,14 +1,21 @@
 package com.eb.appdemo.common.modulo;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eb.appdemo.R;
+import com.eb.appdemo.common.detalleModulo.DetalleModuloActivity;
+import com.eb.appdemo.common.new2.KeeperMainPageActivity;
 import com.eb.appdemo.entidades.ModeloCardView;
 import com.eb.appdemo.entidades.Modulo;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -17,6 +24,8 @@ import com.google.android.material.textview.MaterialTextView;
 import java.util.ArrayList;
 
 public class ModuloListaAdapter extends RecyclerView.Adapter<ModuloListaAdapter.ModuloViewHolder> {
+
+    private static final String TAG = "MyActivity";
 
     private ArrayList<ModeloCardView> lista ;
 
@@ -39,6 +48,7 @@ public class ModuloListaAdapter extends RecyclerView.Adapter<ModuloListaAdapter.
         return new ModuloViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ModuloListaAdapter.ModuloViewHolder holder, int position) {
 
@@ -52,6 +62,26 @@ public class ModuloListaAdapter extends RecyclerView.Adapter<ModuloListaAdapter.
         holder.cm_modulo.setText((lista.get(position).getNombre_modulo()));
         holder.cm_campo.setText((lista.get(position).getNombre_campo()));
         holder.cm_toogle.setActivated(lista.get(position).isActive());
+
+        holder.cm_toogle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //TODO update the active module, if inactive will freeze and place last of list
+                // or discard, need some thinking
+                Log.i(TAG,"ModuloListaAdapter setOnCheckedChangeListener value = " + isChecked) ;
+            }
+        });
+        holder.itemView.setOnClickListener(v -> {
+
+            //TODO sent to new activity where can check historic live data
+            String id = lista.get(position).getId();
+            Log.i(TAG,"ModuloListaAdapter setOnClickListener id = " + id) ;
+
+            //TODO la idea, si es posible, cambiar el menu del parent y iniciar el nuevo fragment
+            Intent mainIntent = new Intent(v.getContext(), DetalleModuloActivity.class);
+            v.getContext().startActivity(mainIntent);
+
+        });
 
     }
 

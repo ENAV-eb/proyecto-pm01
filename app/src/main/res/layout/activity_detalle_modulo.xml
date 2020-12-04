@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".common.new2.KeeperMainPageActivity"
+    tools:context=".common.detalleModulo.DetalleModuloActivity"
     android:fitsSystemWindows="true"
     android:background="@color/white">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/detalle_modulo_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@color/light_cornflower_blue"
@@ -27,7 +27,7 @@
             android:weightSum="12">
 
             <ImageView
-                android:id="@+id/user_icon"
+                android:id="@+id/detalle_modulo_user_icon"
                 android:background="@drawable/rounder_corner"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -35,7 +35,7 @@
                 android:gravity="center_vertical"/>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/user_welcome"
+                android:id="@+id/detalle_modulo_user_welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -57,7 +57,7 @@
 
 
     <FrameLayout
-        android:id="@+id/main_container"
+        android:id="@+id/detalle_modulo_main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
@@ -66,7 +66,7 @@
         app:layout_constraintVertical_bias="0"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/btnMainNavigation"
+        android:id="@+id/btnDetalleModuloNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

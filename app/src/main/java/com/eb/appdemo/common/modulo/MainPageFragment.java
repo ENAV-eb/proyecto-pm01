@@ -119,7 +119,6 @@ public class MainPageFragment extends Fragment {
         modelosRecycleView.setLayoutManager(modelosRvLayoutManager);
 
 
-
         modelosRecycleViewAdapter = new ModuloListaAdapter(modeloCardViewArrayList);
         modelosRecycleView.setAdapter(modelosRecycleViewAdapter);
     }

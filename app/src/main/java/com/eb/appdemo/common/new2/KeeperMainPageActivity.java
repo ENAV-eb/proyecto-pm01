@@ -162,7 +162,6 @@ public class KeeperMainPageActivity extends AppCompatActivity {
             }
         }).start();
 
-
         btnMainNavigation = findViewById(R.id.btnMainNavigation);
         btnMainNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
