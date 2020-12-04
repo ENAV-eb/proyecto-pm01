@@ -9,36 +9,49 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eb.appdemo.R;
+import com.eb.appdemo.entidades.ModeloCardView;
 import com.eb.appdemo.entidades.Modulo;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
 
-public class ModuloListaAdapter extends RecyclerView.Adapter<ModuloListaAdapter.MyViewHolder> {
+public class ModuloListaAdapter extends RecyclerView.Adapter<ModuloListaAdapter.ModuloViewHolder> {
 
-    private Context context;
-    private ArrayList<Modulo> lista = new ArrayList<>();
+    private ArrayList<ModeloCardView> lista ;
 
-    public ModuloListaAdapter(Context context, ArrayList<Modulo> lista) {
-        this.context = context;
+    public ModuloListaAdapter(ArrayList<ModeloCardView> lista) {
         this.lista = lista;
     }
 
     @NonNull
     @Override
-    public ModuloListaAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+    public ModuloViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                               int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_modulo,parent,false);
 
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_modulo,parent,false);
+        RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        view.setLayoutParams(layoutParams);
 
-        return new MyViewHolder(view);
+        return new ModuloViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ModuloListaAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ModuloListaAdapter.ModuloViewHolder holder, int position) {
 
+        holder.cm_temperature.setText((lista.get(position).getTemperatura()));
+        holder.cm_humedad.setText((lista.get(position).getHumedad()));
+        holder.cm_luminosidad.setText((lista.get(position).getLuminosidad()));
+        holder.cm_soil.setText((lista.get(position).getPh_suelo()));
+        holder.cm_crop.setText((lista.get(position).getCrop()));
+        holder.cm_tiempo.setText((lista.get(position).getTiempo()));
 
+        holder.cm_modulo.setText((lista.get(position).getNombre_modulo()));
+        holder.cm_campo.setText((lista.get(position).getNombre_campo()));
+        holder.cm_toogle.setActivated(lista.get(position).isActive());
 
     }
 
@@ -47,12 +60,29 @@ public class ModuloListaAdapter extends RecyclerView.Adapter<ModuloListaAdapter.
         return lista.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class ModuloViewHolder extends RecyclerView.ViewHolder {
 
-        MaterialTextView txt_temperatura;
+        MaterialTextView cm_temperature, cm_humedad, cm_luminosidad, cm_soil, cm_crop,
+                cm_tiempo, cm_campo, cm_modulo, cm_semana, cm_fase;
 
-        public MyViewHolder(@NonNull View itemView) {
+        SwitchMaterial cm_toogle;
+
+        public ModuloViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            cm_temperature = itemView.findViewById(R.id.cm_temperature);
+            cm_humedad = itemView.findViewById(R.id.cm_humedad);
+            cm_luminosidad = itemView.findViewById(R.id.cm_luminosidad);
+            cm_soil = itemView.findViewById(R.id.cm_soil);
+            cm_crop = itemView.findViewById(R.id.cm_crop);
+            cm_tiempo = itemView.findViewById(R.id.cm_tiempo);
+
+            cm_campo = itemView.findViewById(R.id.cm_campo);
+            cm_modulo = itemView.findViewById(R.id.cm_modulo);
+            cm_toogle = itemView.findViewById(R.id.cm_toogle);
+            cm_semana = itemView.findViewById(R.id.cm_semana);
+            cm_fase = itemView.findViewById(R.id.cm_fase);
+
         }
     }
 }

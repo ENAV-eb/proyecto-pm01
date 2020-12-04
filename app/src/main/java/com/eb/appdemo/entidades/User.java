@@ -1,8 +1,14 @@
 package com.eb.appdemo.entidades;
 
-import androidx.annotation.NonNull;
 
-public class User {
+
+import java.io.Serializable;
+import java.util.List;
+
+public class User implements Serializable {
+
+    public static User singletonUser = new User();
+
 
     //TODO provider.type, photourl
     private String id;
@@ -13,9 +19,10 @@ public class User {
     private String countryCode;
     private String providerType;
     private String photoUrl;
+    private List<String> modulos;
 
     public User(String id,String firstName, String lastName, String email, String mobilePhone,
-                String countryCode, String providerType, String photoUrl) {
+                String countryCode, String providerType, String photoUrl, List<String> modulos) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +31,7 @@ public class User {
         this.countryCode = countryCode;
         this.providerType = providerType;
         this.photoUrl = photoUrl;
+        this.modulos = modulos;
     }
 
     public User(String firstName, String lastName, String email, String mobilePhone, String countryCode) {
@@ -97,6 +105,14 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
+    public List<String> getModulos() {
+        return modulos;
+    }
+
+    public void setModulos(List<String> modulos) {
+        this.modulos = modulos;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -108,6 +124,7 @@ public class User {
                 ", countryCode='" + countryCode + '\'' +
                 ", providerType='" + providerType + '\'' +
                 ", photoUrl='" + photoUrl + '\'' +
+                ", modulos=" + modulos +
                 '}';
     }
 

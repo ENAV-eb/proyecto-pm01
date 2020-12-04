@@ -34,6 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
+import java.util.List;
+
 
 public class KeeperPresentationActivity extends AppCompatActivity {
 
@@ -161,7 +163,8 @@ public class KeeperPresentationActivity extends AppCompatActivity {
 
         User user =  new User(FirebaseAuth.getInstance().getCurrentUser().getUid(),
                 account.getGivenName(),account.getFamilyName(),account.getEmail(),
-                "","",providerType.toString(),account.getPhotoUrl().toString());
+                "","",providerType.toString(),
+                account.getPhotoUrl().toString(), List.of());
 
         DatabaseReference userReference = firebaseDatabase.getReference();
 

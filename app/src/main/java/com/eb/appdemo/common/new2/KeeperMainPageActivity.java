@@ -48,22 +48,18 @@ public class KeeperMainPageActivity extends AppCompatActivity {
     private MaterialTextView user_welcome;
     private ImageView user_icon;
 
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keeper_main_page);
 
-
         hooks();
 
         mAuth = FirebaseAuth.getInstance();
 
-
-        asignarReferenciasMenu();
-
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
 
         if(currentUser!=null) {
             try {
@@ -73,11 +69,17 @@ public class KeeperMainPageActivity extends AppCompatActivity {
             }
         }
 
+        asignarReferenciasMenu();
+
+
+
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
     }
 
     private void hooks(){
@@ -114,13 +116,15 @@ public class KeeperMainPageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    User user = dataSnapshot.getValue(User.class);
+                    User sUser = dataSnapshot.getValue(User.class);
 
-                    Log.i(TAG, "Query user:" + user.toString());
-                    user_welcome.setText("Bienvenido, " + user.getUserCompleteName());
-                    if(!user.getPhotoUrl().trim().isEmpty()) {
+                    User.singletonUser = sUser;
+
+                    Log.i(TAG, "Query user:" + sUser.toString());
+                    user_welcome.setText("Bienvenido, " + sUser.getUserCompleteName());
+                    if(!sUser.getPhotoUrl().trim().isEmpty()) {
                         new DownloadImageTask((ImageView) findViewById(R.id.user_icon))
-                                .execute(user.getPhotoUrl());
+                                .execute(sUser.getPhotoUrl());
 
                     } else {
                         //TODO default user icon set
@@ -139,7 +143,25 @@ public class KeeperMainPageActivity extends AppCompatActivity {
     }
 
     private void asignarReferenciasMenu(){
-        abrirFragmentoMenu(new MainPageFragment());
+
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    Thread.sleep(3000);
+                    abrirFragmentoMenu(new MainPageFragment());
+                }
+                catch (InterruptedException e)
+                {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
 
         btnMainNavigation = findViewById(R.id.btnMainNavigation);
         btnMainNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

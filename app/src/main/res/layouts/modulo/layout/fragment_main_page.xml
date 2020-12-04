@@ -13,4 +13,10 @@
         android:text="Home Fragment"
         android:textColor="@color/black"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="50dp"
+        android:id="@+id/modelosRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </FrameLayout>

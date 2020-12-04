@@ -17,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class SecurityUtil {
 
     private static final String TAG = "MyActivity";
@@ -40,7 +42,7 @@ public class SecurityUtil {
         User user =  new User(FirebaseAuth.getInstance().getCurrentUser().getUid(),
                 account.getGivenName(),account.getFamilyName(),account.getEmail(),
                 "","",providerType.toString(),
-                account.getPhotoUrl().toString());
+                account.getPhotoUrl().toString(), List.of());
 
         DatabaseReference userReference = FirebaseDatabase.getInstance().getReference();
 

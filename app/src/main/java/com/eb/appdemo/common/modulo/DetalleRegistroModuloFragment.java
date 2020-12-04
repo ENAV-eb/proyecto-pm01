@@ -146,7 +146,10 @@ public class DetalleRegistroModuloFragment extends Fragment {
 
             moduloReference.child("modulos")
                     .child(newModulo.getId())
-                    .setValue(newModulo);
+                    .setValue(newModulo).addOnSuccessListener(command -> {
+                        newModulo = new Modulo();
+
+            });
 
             Intent mainIntent = new Intent(getContext(), KeeperMainPageActivity.class);
             startActivity(mainIntent);
