@@ -115,6 +115,7 @@ public class KeeperMainPageActivity extends AppCompatActivity {
         Log.i(TAG, "Query userQuery: " + userQuery.toString());
 
         //TODO check in can user singleton is not null or empty otherwise execute:
+        //TODO decouple query from event
         userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override

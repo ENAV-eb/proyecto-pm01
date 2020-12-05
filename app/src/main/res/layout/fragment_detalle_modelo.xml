@@ -5,10 +5,89 @@
     android:layout_height="match_parent"
     tools:context=".common.detalleModulo.DetalleModeloFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Detalle Módulo Fragment"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="50dp"
+        android:padding="@dimen/google_1x">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_responsables"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Responsables"
+            android:textAllCaps="true"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_margin="@dimen/google_1x"
+            android:id="@+id/contacts_responsables"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_responsables"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/contacts_responsables"
+            android:gravity="center_vertical"
+            android:weightSum="10">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_weight="9"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="Indicar ubicación del módulo"
+                android:layout_below="@id/contacts_responsables"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="right"
+                android:tint="@color/imperial_red"
+                android:backgroundTint="@color/fui_transparent"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_baseline_add_location_alt_24"
+               />
+
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_below="@id/linearLayoutMap"/>
+        <!--
+          <com.google.android.gms.maps.MapView
+            android:visibility="gone"
+            android:id="@+id/detalle_modulo_map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayoutMap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+    -->
+
+
+
+
+    </RelativeLayout>
+
 
 </FrameLayout>

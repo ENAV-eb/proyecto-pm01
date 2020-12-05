@@ -2,13 +2,29 @@ package com.eb.appdemo.common.detalleModulo;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.eb.appdemo.R;
+import com.eb.appdemo.common.new2.ContactsAdapter;
+import com.eb.appdemo.entidades.Modulo;
+import com.eb.appdemo.entidades.Responsables;
+import com.eb.appdemo.entidades.SinglentonUtil;
+import com.eb.appdemo.entidades.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,12 +33,17 @@ import com.eb.appdemo.R;
  */
 public class DetalleModeloFragment extends Fragment {
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = "MyActivity";
 
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView rvResponsables;
+    private RecyclerView.Adapter rvResponsablesAdapter;
+    private RecyclerView.LayoutManager rvResposanblesLayoutManager;
+
+    ArrayList<Responsables> responsablesArrayList;
+
+    Query responsablesQuery;
+    ValueEventListener valueEventListenerResponsables;
+
 
     public DetalleModeloFragment() {
         // Required empty public constructor
@@ -32,15 +53,11 @@ public class DetalleModeloFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment DetalleModeloFragment.
      */
     public static DetalleModeloFragment newInstance(String param1, String param2) {
         DetalleModeloFragment fragment = new DetalleModeloFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,8 +66,6 @@ public class DetalleModeloFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -58,6 +73,72 @@ public class DetalleModeloFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalle_modelo, container, false);
+        View view = inflater.inflate(R.layout.fragment_detalle_modelo, container, false);
+
+        responsablesArrayList =  new ArrayList<>();
+
+        hooks(view);
+
+        getResposablesList();
+
+        //setResponsablesAdapterList();
+
+        return view;
+    }
+
+    private void hooks(View view) {
+        rvResponsables = view.findViewById(R.id.contacts_responsables);
+
+    }
+
+    private void setResponsablesAdapterList(){
+
+        rvResponsables.setNestedScrollingEnabled(false);
+        rvResponsables.setHasFixedSize(false);
+        rvResposanblesLayoutManager =  new LinearLayoutManager(getContext(),
+                RecyclerView.VERTICAL,false);
+
+        rvResponsables.setLayoutManager(rvResposanblesLayoutManager);
+
+        rvResponsablesAdapter =  new ResponsablesListAdapter(responsablesArrayList);
+        rvResponsables.setAdapter(rvResponsablesAdapter);
+    }
+
+    private void getResposablesList() {
+
+
+        String path = "modulos/"+ SinglentonUtil.singlentonUtil.getIdModulo()+"/responsables";
+
+        Log.i(TAG, "getResposablesList path:" + path);
+
+        responsablesQuery = FirebaseDatabase.getInstance()
+                .getReference(path);
+
+        Log.i(TAG, "getResposablesList responsablesQuery:" + responsablesQuery.getRef());
+
+        valueEventListenerResponsables =  new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot data : snapshot.getChildren()) {
+
+                    Responsables responsable = data.getValue(Responsables.class);
+                    responsablesArrayList.add(responsable);
+                    Log.i(TAG, "DetalleModeloFragment getResposablesList:" + responsable.toString());
+                }
+
+                setResponsablesAdapterList();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        responsablesQuery.addValueEventListener(valueEventListenerResponsables);
+
+
     }
 }
