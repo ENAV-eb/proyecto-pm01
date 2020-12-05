@@ -33,6 +33,7 @@ import android.widget.ImageView;
 
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.List;
 
 //TODO Investigate a way to do this on KeeperMainPageActivity, integrated in one
 public class DetalleModuloActivity extends AppCompatActivity {
@@ -142,5 +143,22 @@ public class DetalleModuloActivity extends AppCompatActivity {
             bmImage.setImageBitmap(result);
         }
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.i(TAG, "DetalleModuloActivity onRequestPermissionsResult requestCode = " + requestCode);
+        Log.i(TAG, "DetalleModuloActivity onRequestPermissionsResult permissions[] = " + permissions.toString());
+        Log.i(TAG, "DetalleModuloActivity onRequestPermissionsResult grantResults[] = " + grantResults.toString());
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments != null) {
+            for (Fragment fragment : fragments) {
+                fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
+    }
+
+
 
 }

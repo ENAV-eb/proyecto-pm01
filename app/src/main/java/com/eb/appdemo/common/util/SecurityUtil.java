@@ -2,11 +2,17 @@ package com.eb.appdemo.common.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.eb.appdemo.R;
 import com.eb.appdemo.common.new2.KeeperMainPageActivity;
 import com.eb.appdemo.common.new2.KeeperPresentationActivity;
+import com.eb.appdemo.entidades.Modulo;
 import com.eb.appdemo.entidades.User;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SecurityUtil {
@@ -36,19 +44,26 @@ public class SecurityUtil {
 
     }
 
+    //COMPLETED Ccheck if user exist, and set singlenton
     public static void createUserGoogleToDB(GoogleSignInAccount account, ProviderType providerType,
                                            Context context) {
 
-        User user =  new User(FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                account.getGivenName(),account.getFamilyName(),account.getEmail(),
-                "","",providerType.toString(),
-                account.getPhotoUrl().toString(), List.of());
+        if(!verifiedExistUser(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
 
-        DatabaseReference userReference = FirebaseDatabase.getInstance().getReference();
+            List<String> modulos = new ArrayList<>();
+            User user = new User(FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                    account.getGivenName(), account.getFamilyName(), account.getEmail(),
+                    "", "", providerType.toString(),
+                    account.getPhotoUrl().toString(), modulos);
 
-        userReference.child("users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .setValue(user);
+            DatabaseReference userReference = FirebaseDatabase.getInstance().getReference();
+
+            userReference.child("users")
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .setValue(user);
+        }
+
+        getUserInstance(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         redirectMainPage(context);
 
@@ -123,6 +138,47 @@ public class SecurityUtil {
         return flag[0];
     }
 
+    public static boolean verifiedExistUser(String id){
+        Query userQuery = FirebaseDatabase.getInstance()
+                .getReference("users")
+                .orderByChild("id")
+                .equalTo(id);
+
+        if(userQuery!=null) return true;
+        else return false;
+    }
+    public static void getUserInstance(String id){
+        Query userQuery = FirebaseDatabase.getInstance()
+                .getReference("users")
+                .orderByChild("id")
+                .equalTo(id);
+
+        Log.i(TAG, "getUserInstance Query userQuery: " + userQuery.toString());
+
+        //TODO check in can user singleton is not null or empty otherwise execute:
+        //TODO decouple query from event
+        userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    User sUser = dataSnapshot.getValue(User.class);
+
+                    User.singletonUser = sUser;
+
+                    Log.i(TAG, "getUserInstance Query userQuery: " + User.singletonUser);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     private static void redirectMainPage(Context context){
         Intent mainIntent = new Intent(context, KeeperMainPageActivity.class);
@@ -133,6 +189,8 @@ public class SecurityUtil {
         Intent mainIntent = new Intent(context, KeeperPresentationActivity.class);
         context.startActivity(mainIntent);
     }
+
+
 
 
 }

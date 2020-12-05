@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/prussian_blue"
+        android:background="@color/dark_jungle_green"
         android:outlineAmbientShadowColor="@color/orange"
         app:itemIconTint="@drawable/detalle_menu_selector"
         app:labelVisibilityMode="labeled"

@@ -159,13 +159,13 @@ public class MainPageFragment extends Fragment {
     @SuppressLint("RestrictedApi")
     private void getModulosData() {
 
-         User sUser = User.singletonUser;
+
 
         Log.i(TAG, "MainPageFragment getModulosData sUser:"
-                + sUser.getModulos());
+                + User.singletonUser.getModulos());
 
         //COMPLETED obtener los id de los modulos que posee el usuario
-        List<String> modulosUser = sUser.getModulos();
+        List<String> modulosUser = User.singletonUser.getModulos();
 
         Log.i(TAG, "MainPageFragment getModulosData modulosUser:"
                 + modulosUser);
