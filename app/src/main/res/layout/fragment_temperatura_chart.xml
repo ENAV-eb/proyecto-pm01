@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".common.modulo.MainPageFragment"
-    android:background="@android:color/white">
-
+    tools:context=".common.detalleModulo.TemperaturaChartFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,17 +13,25 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Listado de módulos"
-            android:textColor="@color/black"
-            android:gravity="center"/>
+            android:text="Temperature Fragment"
+            android:gravity="center" />
 
     </LinearLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="50dp"
-        android:id="@+id/modelosRecycleView"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/temperature_line_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </RelativeLayout>
+
+
 
 </FrameLayout>

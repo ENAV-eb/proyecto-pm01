@@ -31,12 +31,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MainPageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class MainPageFragment extends Fragment {
 
     private static final String TAG = "MyActivity";
@@ -48,6 +50,13 @@ public class MainPageFragment extends Fragment {
     private RecyclerView modelosRecycleView;
     private RecyclerView.Adapter modelosRecycleViewAdapter;
     private RecyclerView.LayoutManager modelosRvLayoutManager;
+
+    Query moduloQuery,lastDataQuery;
+    ChildEventListener childEventListenerLastData;
+    ValueEventListener valueEventListenerModulo;
+
+    ModeloCardView modeloCardView =  new ModeloCardView();
+
 
     ArrayList<ModeloCardView> modeloCardViewArrayList;
 
@@ -104,6 +113,28 @@ public class MainPageFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(TAG, "MainPageFragment onStart ");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(TAG, "MainPageFragment onPause ");
+        //lastDataQuery.removeEventListener(childEventListenerLastData);
+        //moduloQuery.removeEventListener(valueEventListenerModulo);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.i(TAG, "MainPageFragment onDetach ");
+
+
+    }
+
     private void hooks(View view) {
         modelosRecycleView =  view.findViewById(R.id.modelosRecycleView);
     }
@@ -133,20 +164,20 @@ public class MainPageFragment extends Fragment {
         Log.i(TAG, "MainPageFragment getModulosData sUser:"
                 + sUser.getModulos());
 
-        //TODO obtener los id de los modulos que posee el usuario
+        //COMPLETED obtener los id de los modulos que posee el usuario
         List<String> modulosUser = sUser.getModulos();
 
         Log.i(TAG, "MainPageFragment getModulosData modulosUser:"
                 + modulosUser);
 
-        //TODO obtener la data general y la última data y actualizar automaticamente
-        ModeloCardView modeloCardView =  new ModeloCardView();
 
+        //COMPLETED obtener la data general y la última data y actualizar automaticamente
         for (String s : modulosUser) {
 
-            getModuloData(s, modeloCardView);
-            //getLiveDataModulo(s);
-            getLastLiveDataModulo(s, modeloCardView);
+            synchronized (s) {
+                getModuloData(s,modeloCardView);
+                getLastLiveDataModulo(s, modeloCardView);
+            }
 
             modeloCardViewArrayList.add(modeloCardView);
             Log.i(TAG, "MainPageFragment getModulosData modeloCardView:"
@@ -154,22 +185,53 @@ public class MainPageFragment extends Fragment {
             modeloCardView = new ModeloCardView();
         }
 
-        //TODO poblar los card con la data
+        //COMPLETED poblar los card con la data
 
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void getModuloData(String id, ModeloCardView modeloCardView){
+
+        moduloQuery = FirebaseDatabase.getInstance()
+                .getReference("modulos")
+                .orderByChild("id")
+                .equalTo(id);
+
+        valueEventListenerModulo = new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot data : snapshot.getChildren()) {
+                    Modulo modulo = data.getValue(Modulo.class);
+                    modeloCardView.setFixedData(modulo);
+
+                    Log.i(TAG, "MainPageFragment getModulosData modulo:"
+                            + modulo.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        moduloQuery.addValueEventListener(valueEventListenerModulo);
+
+    }
+
+
     private void getLastLiveDataModulo(String id, ModeloCardView modeloCardView) {
 
         String path = "modulos/"+id+"/data";
 
-        Query lastDataQuery = FirebaseDatabase.getInstance()
+        lastDataQuery = FirebaseDatabase.getInstance()
                 .getReference(path).limitToLast(1);
 
-        lastDataQuery.addChildEventListener(new ChildEventListener() {
+        childEventListenerLastData = new ChildEventListener() {
 
-            @RequiresApi(api = Build.VERSION_CODES.O)
+
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DataModulo dataModulo = snapshot.getValue(DataModulo.class);
@@ -202,7 +264,9 @@ public class MainPageFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        };
+
+        lastDataQuery.addChildEventListener(childEventListenerLastData);
 
     }
 
@@ -279,32 +343,5 @@ public class MainPageFragment extends Fragment {
     }
 
 
-    private void getModuloData(String id, ModeloCardView modeloCardView){
 
-        Query moduloQuery = FirebaseDatabase.getInstance()
-                .getReference("modulos")
-                .orderByChild("id")
-                .equalTo(id);
-
-        moduloQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot data : snapshot.getChildren()) {
-                    Modulo modulo = data.getValue(Modulo.class);
-                    modeloCardView.setFixedData(modulo);
-
-                    Log.i(TAG, "MainPageFragment getModulosData modulo:"
-                            + modulo.toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
 }

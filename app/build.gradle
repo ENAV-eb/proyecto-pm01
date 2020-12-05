@@ -9,8 +9,9 @@ android {
 
     defaultConfig {
         applicationId "com.eb.appdemo"
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 30
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
 
@@ -56,6 +57,8 @@ ext {
 }
 dependencies {
 
+    implementation 'com.android.support:multidex:1.0.3'
+
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -89,6 +92,10 @@ dependencies {
     //Maps google service
     implementation "com.google.android.gms:play-services-maps:$googlePlayVersion"
     implementation "com.google.android.gms:play-services-location:$googlePlayVersion"
+
+    //MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'
 

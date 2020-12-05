@@ -179,12 +179,12 @@ public class KeeperPresentationActivity extends AppCompatActivity {
         startActivity(mainIntent);
     }
 
-    //TODO update with firebase data
+    //COMPLETED update with firebase data
     private void updateUI(FirebaseUser currentUser) {
 
         login_layout.setVisibility(View.GONE);
         //User user = daoUser.getUserFromUID(currentUser.getUid());
-        //TODO replace sqLite with a mysqldb or add firebase support for other params
+        //COMPLETED replace sqLite with a mysqldb or add firebase support for other params
         //btnIngresar.setText("Bienvenido " + user.getUserCompleteName() +  "! - Click para Ingresar");
         btnIngresar.setText("Bienvenido " + mAuth.getCurrentUser().getEmail() +  "! - Click para Ingresar");
         ingresar_layout.setVisibility(View.VISIBLE);

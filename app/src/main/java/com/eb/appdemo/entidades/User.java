@@ -9,8 +9,6 @@ public class User implements Serializable {
 
     public static User singletonUser = new User();
 
-
-    //TODO provider.type, photourl
     private String id;
     private String firstName;
     private String lastName;

@@ -148,6 +148,7 @@ public class DetalleRegistroModuloFragment extends Fragment {
                     .child(newModulo.getId())
                     .setValue(newModulo).addOnSuccessListener(command -> {
                         newModulo = new Modulo();
+                        //TODO add modulo to user modulos list users/id/modulos
 
             });
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_temperatura"
+        android:title="Temp"
+        android:iconTint="@color/white"
+        android:icon="@drawable/ic_baseline_temperature_24"/>
+
+    <item android:id="@+id/menu_humedad"
+        android:title="Humedad"
+        android:iconTint="@color/white"
+        android:iconTintMode="add"
+        android:icon="@drawable/ic_baseline_humidity_24"/>
+
+    <item android:id="@+id/menu_all"
+        android:title="All Charts"
+        android:icon="@drawable/ic_baseline_addchart_24"/>
+
+    <item android:id="@+id/menu_detalle_modulo"
+        android:title="Detalle"
+        android:icon="@drawable/ic_baseline_ballot_24"/>
+
+    <item android:id="@+id/menu_return_home"
+        android:title="Return"
+        android:icon="@drawable/ic_baseline_home_24"/>
+
+</menu>

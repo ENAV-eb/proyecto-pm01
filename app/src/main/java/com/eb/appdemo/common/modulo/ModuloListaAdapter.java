@@ -18,6 +18,7 @@ import com.eb.appdemo.common.detalleModulo.DetalleModuloActivity;
 import com.eb.appdemo.common.new2.KeeperMainPageActivity;
 import com.eb.appdemo.entidades.ModeloCardView;
 import com.eb.appdemo.entidades.Modulo;
+import com.eb.appdemo.entidades.SinglentonUtil;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -75,7 +76,10 @@ public class ModuloListaAdapter extends RecyclerView.Adapter<ModuloListaAdapter.
 
             //TODO sent to new activity where can check historic live data
             String id = lista.get(position).getId();
-            Log.i(TAG,"ModuloListaAdapter setOnClickListener id = " + id) ;
+
+            SinglentonUtil.singlentonUtil = new SinglentonUtil(id);
+
+            Log.i(TAG,"ModuloListaAdapter setOnClickListener id = " + SinglentonUtil.singlentonUtil.getIdModulo()) ;
 
             //TODO la idea, si es posible, cambiar el menu del parent y iniciar el nuevo fragment
             Intent mainIntent = new Intent(v.getContext(), DetalleModuloActivity.class);

@@ -1,6 +1,7 @@
 package com.eb.appdemo.common.new2;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,6 +11,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -36,6 +38,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 
 public class KeeperMainPageActivity extends AppCompatActivity {
@@ -111,7 +114,9 @@ public class KeeperMainPageActivity extends AppCompatActivity {
 
         Log.i(TAG, "Query userQuery: " + userQuery.toString());
 
+        //TODO check in can user singleton is not null or empty otherwise execute:
         userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -121,7 +126,7 @@ public class KeeperMainPageActivity extends AppCompatActivity {
                     User.singletonUser = sUser;
 
                     Log.i(TAG, "Query user:" + sUser.toString());
-                    user_welcome.setText("Bienvenido, " + sUser.getUserCompleteName());
+                    user_welcome.setText("Bienvenido, " + sUser.getUserCompleteName() + "    " + LocalDate.now());
                     if(!sUser.getPhotoUrl().trim().isEmpty()) {
                         new DownloadImageTask((ImageView) findViewById(R.id.user_icon))
                                 .execute(sUser.getPhotoUrl());
@@ -146,6 +151,7 @@ public class KeeperMainPageActivity extends AppCompatActivity {
 
         new Thread(new Runnable()
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void run()
             {
@@ -156,7 +162,6 @@ public class KeeperMainPageActivity extends AppCompatActivity {
                 }
                 catch (InterruptedException e)
                 {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -164,14 +169,15 @@ public class KeeperMainPageActivity extends AppCompatActivity {
 
         btnMainNavigation = findViewById(R.id.btnMainNavigation);
         btnMainNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                if (item.getItemId() == R.id.menu_home) { abrirFragmentoMenu( new MainPageFragment());}
-                if (item.getItemId() == R.id.menu_add_module) { abrirFragmentoMenu( new NewModuloFragment());}
-                if (item.getItemId() == R.id.menu_config) { abrirFragmentoMenu( new ConfigParentFragment());}
+                if (item.getItemId() == R.id.menu_home) { abrirFragmentoMenu( new MainPageFragment()); return true;}
+                if (item.getItemId() == R.id.menu_add_module) { abrirFragmentoMenu( new NewModuloFragment()); return true;}
+                if (item.getItemId() == R.id.menu_config) { abrirFragmentoMenu( new ConfigParentFragment()); return true;}
 
-                return false;
+                return true;
             }
         });
     }
